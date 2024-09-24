@@ -1,0 +1,31 @@
+"id","Date","ticket_type","age_group","neighbourhood","LicensesIssued"
+1,2023-01-01,"CAIA","Adult","Henry Farm",1
+2,2023-01-02,"Speeding","Youth","Henry Farm",1
+3,2023-01-03,"Distracted Driving","Youth","Clanton Park",2
+4,2023-01-04,"Distracted Driving","Adult","Clanton Park",0
+5,2023-01-05,"Aggressive Driving","Adult","Henry Farm",1
+6,2023-01-06,"Distracted Driving","Adult","Avondale",2
+7,2023-01-07,"Aggressive Driving","Adult","Clanton Park",2
+8,2023-01-08,"CAIA","Youth","Henry Farm",3
+9,2023-01-09,"Speeding","Youth","Clanton Park",1
+10,2023-01-10,"Distracted Driving","Adult","Henry Farm",1
+11,2023-01-11,"Distracted Driving","Adult","Avondale",0
+12,2023-01-12,"Distracted Driving","Youth","Clanton Park",1
+13,2023-01-13,"Speeding","Youth","Clanton Park",3
+14,2023-01-14,"Distracted Driving","Youth","Clanton Park",4
+15,2023-01-15,"Speeding","Youth","Henry Farm",1
+16,2023-01-16,"Aggressive Driving","Youth","Henry Farm",2
+17,2023-01-17,"Distracted Driving","Youth","Avondale",0
+18,2023-01-18,"Aggressive Driving","Adult","Henry Farm",0
+19,2023-01-19,"Speeding","Youth","Clanton Park",0
+20,2023-01-20,"Aggressive Driving","Adult","Avondale",0
+21,2023-01-21,"Aggressive Driving","Adult","Henry Farm",0
+22,2023-01-22,"Distracted Driving","Youth","Avondale",3
+23,2023-01-23,"Speeding","Youth","Henry Farm",3
+24,2023-01-24,"Speeding","Youth","Clanton Park",1
+25,2023-01-25,"Distracted Driving","Youth","Avondale",1
+26,2023-01-26,"Aggressive Driving","Youth","Henry Farm",1
+27,2023-01-27,"CAIA","Adult","Avondale",1
+28,2023-01-28,"Distracted Driving","Adult","Avondale",1
+29,2023-01-29,"CAIA","Youth","Henry Farm",1
+30,2023-01-30,"Distracted Driving","Adult","Henry Farm",0

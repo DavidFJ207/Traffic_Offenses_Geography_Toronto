@@ -80,44 +80,50 @@ This data shows actual numbers of citations given out in each neighbourhood and 
 
 # Model {#sec-model}
 
+The goal of our modeling strategy is twofold. First, to determine whether there is a relationship between neighborhood income and the number of offenses. Second, to assess how strong this relationship is.  
+We will use a simple linear regression model to examine the effect of income on the number of citations issued in each neighborhood. Background details and diagnostics are included in [Appendix -@sec-model-details].
 
-The goal of our modelling strategy is twofold. Firstly, is there a relationship between the income and how much offences they get. Secondly, how strong is this relationship. 
-We will be using Simple Linear Regression model to see the effect of income and the number of citations given in that neighborhood. Background details and diagnostics are included in [Appendix -@sec-model-details].
-## Model set-up
+## Model Setup
 
-Define $y_i$ as the number offences done by a certain neighborhood. Then $x_i$ is the average income of a certain neighborhood measured in thousands.  
+Define \( y_i \) as the number of offenses in a given neighborhood, and \( x_i \) as the average income of that neighborhood measured in thousands.
 
-\begin{align} 
-E(Y|X)Y_i = \beta_0 + \beta_1(X)
-\end{align}
+\[
+E(Y|X) = \beta_0 + \beta_1(X)
+\]
 
+### Model Justification
 
-### Model justification
-
-The reason a linear regression model was specifically chosen was because we want to analyze the effect of an increase of citation, does it mean that the income of the neighborhood goes down or does it go up? This will allow us to see how strong of a relationship there is between citations and average neighbourhood income. 
-
-
-
+A linear regression model was chosen because it allows us to analyze the effect of income on the number of citations. As neighborhood income increases or decreases, do offenses decrease or increase? This will help us evaluate the strength of the relationship between citations and average neighborhood income. While we could add more variables for a deeper analysis, that would fall outside the scope of this paper, which is focused solely on determining if a correlation exists between income and offenses.
 
 # Results {#sec-results}
 
-We expect a positive relationship between the number offences given and the lower the income of the neighborhood. In particular... 
+The linear regression model was applied to examine the relationship between neighborhood income and the number of traffic offenses. The model's equation is as follows:
 
-Our results are summarized in @ressidual_plots. Residual vs. Predictors, Residuals vs. fitted values and Normal quantile-quantile are all used to verify that our 4 assumptions of linear regression models aren't violation and that the data is works as intended. We can see that Linearity is  [TODO: check if linarity is violated]. Uncorrelated errors is [TODO: check if uncorralted isnt violated], and constant error is [TODO: check if constant error isnt varied], lastly nromality of errors [TODO: check if normal]. Give all these assumptions, we can [TODO: check if we can trust results of linear regression]
+\[
+E(Y|X) = \beta_0 + \beta_1 \cdot \text{average\_income}
+\]
+
+where \( Y \) is the number of tickets issued, and \( X \) is the average income in thousands. The summary of the linear regression model is provided below in @ressidual_plots.
+
+We expect a negative relationship between the number of offenses and neighborhood income, meaning that as income decreases, offenses increase. Our results are summarized in @ressidual_plots. Residuals vs. Predictors, Residuals vs. Fitted Values, and Normal Q-Q plots are used to verify that the four key assumptions of linear regression are not violated and that the model fits the data appropriately. We will assess whether linearity [TODO: check if linearity is violated], uncorrelated errors [TODO: check if uncorrelated errors are violated], constant variance [TODO: check for homoscedasticity], and normality of errors [TODO: check for normality] hold. Given these assumptions, we will [TODO: assess whether the results of the linear regression can be trusted].
 
 # Discussion
 
-## First discussion point {#sec-first-point}
+## First Discussion Point {#sec-first-point}
+To begin, we should focus on the main purpose of this paper, which is to determine whether there is a relationship between the number of offenses and the income of a neighborhood. As we can see from the results, [TODO: Discuss model results].
 
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
+## Second Discussion Point
+This model only considers two variables: the income and the number of offenses per neighborhood. It does not account for all possible factors that may influence the number of citations a neighborhood receives. For example, busier roads are more likely to have more offenses than quieter neighborhoods. Future analysis would need to examine these factors in more detail by incorporating variables such as road safety data, traffic volume, or demographic factors.
 
-## Second discussion point
+## Third Discussion Point
+[TODO: Discuss how this information can help the public].
 
-## Third discussion point
+## Weaknesses and Next Steps
 
-## Weaknesses and next steps
+There may be bias in the data, as the income of a neighborhood could influence the amount of police activity in that area. This would lead to more citations being issued in lower-income neighborhoods due to higher police presence. Additionally, the linear regression model we used makes certain assumptions, which are further discussed in @sec-model-details, regarding how well the model fits the data. 
 
-Weaknesses and next steps should also be included.
+The next steps for this research would be to incorporate additional variables to provide a more comprehensive picture of the factors influencing the number of citations a neighborhood receives. Furthermore, using more sophisticated models could yield a more accurate understanding of the relationship between income and traffic offenses. Lastly, the data does not account for citations that were dismissed or dropped after being reviewed, which could affect the accuracy of the results.
+
 
 \newpage
 
@@ -145,7 +151,12 @@ Simple Linear Regression Model. This shows...
 #| fig-cap: "Examining how the model fits, and is affected by, the data"
 #| fig-subcap: ["Creates a formula Y = B_O + B_1 X"]
 
-#[TODO: show regression model]
+#### Load saved model ####
+first_model <- readRDS(here::here("models/sim_offence_linear_regression.rds"))
+
+#### Display model summary ####
+summary(first_model)
+
 ```
 
 ## Diagnostics
@@ -166,7 +177,9 @@ Simple Linear Regression Model. This shows...
 #| fig-subcap: ["Residuals vs. Fitted Values", "Normal Q-Q Plot", "Residuals vs. Predictors"]
 #| layout-ncol: 2
 
-#[TODO: Create plots]
+#### Residual diagnostics ####
+par(mfrow = c(2, 2))  # Arrange plots in a 2x2 grid
+plot(first_model)  # This will generate residual plots automatically
 
 ```
 \newpage
