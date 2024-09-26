@@ -1,0 +1,311 @@
+---
+title: "Analysis of Traffic Offences Across Toronto neighbourhoods"
+subtitle: "The effect of neighbourhoods incomes"
+author: 
+  - Gadiel David Flores
+thanks: "Code and data are available at: https://github.com/DavidFJ207/Traffic_offences_Geography_Toronto"
+date: today
+date-format: long
+abstract: "This paper examines the relationship between traffic offences and neighbourhood income in Toronto. Using police reports from 2014 to 2023 and income data from the 2016 Toronto neighbourhood census, we analyze how offences such as speeding, aggressive driving, and distracted driving vary across income levels. Through visualizations and linear regression models, we find that while a weak positive correlation exists between neighbourhood income and the frequency of citations, other factors likely contribute to traffic violations. Our findings raise questions about equitable enforcement practices and suggest further research into socioeconomic disparities in traffic offence distributions."
+format: pdf
+number-sections: true
+bibliography: references.bib
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+```
+
+
+# Introduction
+Toronto has a diverse range of neighbourhoods, from busy urban centers to quieter residential areas. Even with public transportation, driving remains a popular option, and nothing is more frustrating than receiving a traffic ticket. By examining potential patterns in traffic offences, we may be able to identify traps set to catch drivers off guard or pinpoint areas in Toronto that are consistently dangerous and require attention. Analyzing this data could also help drivers avoid future speeding tickets.
+
+We will explore how neighbourhood income affects police presence and citations overall. Another potential pattern could involve dangerous roads that are prone to human error, leading to a higher number of violations, which may be exploited by officers who are aware of these trends. We will use @citeR for our analysis and @TorontoPoliceData2024 for our primary data.
+
+The remainder of this paper is structured as follows: @sec-data will explore our data from @TorontoPoliceData2024 and @TorontoNeighbourhoodProfiles, highlighting any potential clusters and patterns in the number of offences, locations, and types of citations. We will then further analyze these findings in @sec-model. Finally, we will discuss our conclusions in @sec-result.
+
+
+# Data {#sec-data}
+In this section, we will specifically examine the types of offences and the number of citations issued from 2014 to 2023. Our focus will be on aggressive driving offences, which include tailgating, excessive lane changing, and road rage, as well as distracted driving, such as texting while driving—both of which pose risks to road safety. Other traffic offences covered are speeding, violations under the Compulsory Automobile Insurance Act (CAIA) related to vehicle insurance, and miscellaneous offences under the Highway Traffic Act (HTA). The frequency of each citation is visualized in (@fig-citations) and was extracted from @TorontoPoliceData2024. This dataset records the number of tickets issued by year, ticket type, offence, age group, division, and neighbourhood. In @sec-data-cleaning, we discuss how this data was processed for our analysis. This dataset contains the most recent data available, as of August 2nd. Our analysis will focus on the total number of offences committed by neighbourhood, regardless of age.
+
+```{r}
+#| label: fig-citations
+#| fig-cap: Frequency of Citations by Neighbourhood
+#| echo: false
+#| warning: false
+#| message: false
+
+# Load necessary libraries
+library(ggplot2)
+library(here)
+library(dplyr)
+
+# Load the data from the CSV file using 'here'
+tickets_data <- read.csv(here::here("data/analysis_data/analysis_data.csv"))
+
+# Summarize the data to get the total tickets per Offence Category and Year
+tickets_summary <- tickets_data %>%
+  group_by(OFFENCE_CATEGORY, OFFENCE_YEAR) %>%
+  summarize(Total_Tickets = sum(Total_Tickets, na.rm = TRUE))
+
+# bar plot
+ggplot(tickets_summary, aes(x = OFFENCE_CATEGORY, y = Total_Tickets, fill = as.factor(OFFENCE_YEAR))) +
+  geom_bar(stat = "identity", position = "dodge") +  
+  labs(title = "Total Offences per Category by Year",
+       x = "Offence Category",
+       y = "Total Tickets",
+       fill = "Offence Year") + 
+  theme_minimal() +  
+  scale_fill_grey(start = 0.8, end = 0.2) +  
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),  
+    plot.title = element_text(hjust = 0.5),  
+    legend.position = "top"  
+  )
+
+
+```
+
+As seen in this graph, speeding is the most frequently issued offence, while aggressive driving has shown little change over the years. Now that we have identified the most common offences, we will examine the neighbourhoods. In (@fig-income), we explore the relationship between neighbourhood incomes and the number of offences committed. This data comes from the 2016 Toronto neighbourhood Profiles, which is a census that collects information on households, including age, sex, education, and, for our purposes, income. Specifically, we will analyze the 2016 census data, focusing on _id 1030, "Average after-tax income of households in 2015 ($)," to approximate neighbourhood income. In @sec-data-cleaning, we discuss the selection of neighbourhoods and the rationale behind these choices.
+
+```{r}
+#| label: fig-income
+#| fig-cap: Toronto Neighbourhoods Income vs. Offences
+#| fig-subcap: ["Total Offences by Neighbourhood","Specific offence Category"]
+#| echo: false
+#| warning: false
+#| message: false
+
+# Load necessary libraries
+library(ggplot2)
+library(here)
+library(dplyr)
+library(tidyr)
+library(scales)
+library(gridExtra)
+
+# Load the dataset
+income_data <- read.csv(here::here("data", "analysis_data", "income_and_offences.csv"))
+
+# Load the models
+all_models <- readRDS(here::here("models", "all_offence_models.rds"))
+
+# Variables for x axis
+min_income <- 100000
+max_income <- 500000
+
+# Create scatterplots for each offence type and add line of best fit
+p1 <- ggplot(income_data, aes(x = Income, y = Total_Tickets)) +
+  geom_point(color = "black", alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, color = "red", formula = y ~ x) +  # Add line of best fit
+  scale_x_continuous(labels = scales::comma) +
+  labs(title = "Income vs Total Tickets", x = "Income", y = "Total Tickets") +
+  theme_minimal()
+
+p2 <- ggplot(income_data, aes(x = Income, y = Aggressive_Driving)) +
+  geom_point(color = "black", alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, color = "red", formula = y ~ x) +  
+  scale_x_continuous(labels = scales::comma, breaks = c(min_income, max_income)) +  
+  labs(title = "Income vs Aggressive Driving") +
+  theme_minimal() +
+  theme(axis.title.x = element_blank(), axis.title.y = element_blank())  
+
+p3 <- ggplot(income_data, aes(x = Income, y = All_CAIA)) +
+  geom_point(color = "black", alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, color = "red", formula = y ~ x) +  
+  scale_x_continuous(labels = scales::comma, breaks = c(min_income, max_income)) + 
+  labs(title = "Income vs All CAIA") +
+  theme_minimal() +
+  theme(axis.title.x = element_blank(), axis.title.y = element_blank())  
+
+p4 <- ggplot(income_data, aes(x = Income, y = Distracted_Driving)) +
+  geom_point(color = "black", alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, color = "red", formula = y ~ x) +  
+  scale_x_continuous(labels = scales::comma, breaks = c(min_income, max_income)) +  
+  labs(title = "Income vs Distracted Driving") +
+  theme_minimal() +
+  theme(axis.title.x = element_blank(), axis.title.y = element_blank())  
+
+p5 <- ggplot(income_data, aes(x = Income, y = Other_HTA)) +
+  geom_point(color = "black", alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, color = "red", formula = y ~ x) +  
+  scale_x_continuous(labels = scales::comma, breaks = c(min_income, max_income)) + 
+  labs(title = "Income vs Other HTA") +
+  theme_minimal() +
+  theme(axis.title.x = element_blank(), axis.title.y = element_blank())  
+
+p6 <- ggplot(income_data, aes(x = Income, y = Speeding)) +
+  geom_point(color = "black", alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE, color = "red", formula = y ~ x) +
+  scale_x_continuous(labels = scales::comma, breaks = c(min_income, max_income)) + 
+  labs(title = "Income vs Speeding") +
+  theme_minimal() +
+  theme(axis.title.x = element_blank(), axis.title.y = element_blank())  
+
+# Arrange the plots in a grid
+grid.arrange(p1)
+grid.arrange(p2, p3, p4, p5, p6 ,ncol = 3)
+
+```
+
+Each point in these scatterplots represents an individual neighbourhood. In these graphs (@fig-income), it is evident that there is a weak positive correlation between income and the number of citations, with offences like distracted driving and speeding showing the strongest correlations among all offence types. This is further illustrated in @sec-model and @sec-model-details. Lastly, we note that the graphs display high variation and a wide spread, raising the question of whether there is issues with our correlation model between income and the number of citations issued. In the next section, we will explain how we created a correlation model to draw the red line, which helps us assess the strength of this correlation. 
+
+
+# Model {#sec-model}
+
+The goal of our modeling strategy is twofold. First, to determine whether there is a relationship between neighbourhood income and the number of offences. Second, to assess how strong this relationship is.  
+We will use a simple linear regression model to examine the effect of income on the number of citations issued in each neighbourhood. Background details and diagnostics are included in [Appendix -@sec-model-details].
+
+## Model Setup
+
+Define $ y_i $ as the number of offences in a given neighbourhood, and $ x_i $ as the average income of that neighbourhood measured in thousands.  
+$ E(Y|X) = \beta_0 + \beta_1(X)$
+
+### Model Justification
+
+A linear regression model was chosen because it allows us to analyze the effect of income on the number of citations. As neighbourhood income increases or decreases, do offences decrease or increase? This will help us evaluate the strength of the relationship between citations and average neighbourhood income. While we could add more variables for a deeper analysis, that would fall outside the scope of this paper, which is focused solely on determining if a correlation exists between income and offences. While other models may give us a more accurate picture of the correlation, for the purpose of this analysis, we are just interested to see if there is a correlation or if other factors affect the amount of ciations given out. So for that purpose, a linear regression serves our purpose. 
+
+# Results {#sec-results}
+
+The linear regression model was applied to examine the relationship between neighbourhood income and the number of traffic offences. The model's equation is as follows:
+
+
+$E(Y|X) = \beta_0 + \beta_1 \cdot \text{average\_income}$
+
+The summary of the linear regression model is provided below in @ressidual_plots.These plots tells us that theres other factors affecting the amount of offences committed than just the neighbourhoods income. This means that our model isnt fully cpaturing all the factors that influence the neighbourhoods offences. Although, @fig-ResidualDiagnostics does show us that aggressive driving has the strongest relationship between the number of offences and a neighbourhoods income.
+Overall, while there is a relationship between neighbourhoods income and their offences, there is other factors that are missing that we should consider.
+
+# Discussion
+
+## Exploring the Relationship Between Income and Offences {#sec-first-point}
+The primary focus of this paper is to determine whether there is a relationship between the number of offences and the income of a neighbourhood. The results indicate that this relationship is weak but present, with aggressive driving and speeding showing the strongest connections to income. This raises questions about why wealthier neighbourhoods are penalized more than lower-income ones. Perhaps wealthier neighbourhoods have more speed cameras, or maybe speed cameras in lower-income areas are more frequently vandalized. It is also possible that police are targeting wealthier individuals, or that wealthier individuals are more willing to pay speeding tickets, while those in lower-income neighbourhoods are more cautious about speeding. These questions lead to broader inquiries, such as whether fines should be income-adjusted.
+
+## Scope of Analysis
+Our data also suggest that we do not have the full picture. Other variables should be considered when analyzing the correlation between police activity and specific neighbourhoods. For instance, busier neighbourhoods might receive more offences simply due to higher traffic volume compared to quieter areas. Some neighbourhoods have school zones, which may lead to an increase in offences. The time of offences could also be another factor to take into account. Lastly, considering what @deLima2022 discusses in 'Making Forest Data Fair and Open' about how data is collected, it raises questions about whether traffic data has been collected without consideration of the socioeconomic background of neighbourhoods, potentially reinforcing pre-existing disparities and affecting how offences are recorded and managed. There are risks related to who collects traffic offence data, under what conditions, and what biases they may have. Accounting for these factors could provide a clearer understanding.
+
+## The Broader Implications and Ethical Considerations
+We have raised more questions than answers, but that was the purpose of this paper. If we can find a relationship between income and traffic offences, even if weak, there might be other factors affecting offences across Toronto. Identifying all these variables can help us make Toronto fairer and safer. At the end of the day, it is crucial to have driving laws that are enforced equally and fairly across the city. This paper should serve as a starting point to delve deeper into ensuring that police practices are just and equitable. While it might be tempting to use this data for personal benefit to avoid penalties, we have an ethical responsibility to use public data in the best interest of society. As stated in @DataFeminism, 'What gets counted counts.' The data presented here can shape perceptions of traffic enforcement and reveal broader patterns of unequal enforcement across different income levels. 
+
+## Weaknesses and Next Steps
+There may be bias in the data, as the income of a neighbourhood could influence the level of police activity in that area. This could result in more citations being issued in lower-income neighbourhoods due to higher police presence. Additionally, the linear regression model we used makes certain assumptions, which are further discussed in @sec-model-details, regarding how well the model fits the data. As described in @DataFeminism, 'Rethinking Binaries' is crucial to capture the bigger picture, as focusing on only two variables can lead to overly simplified analyses and insufficient conclusions.
+
+The next steps for this research would involve incorporating additional variables to provide a more comprehensive view of the factors influencing the number of citations a neighbourhood receives. Furthermore, using more sophisticated models could lead to a more accurate understanding of the relationship between income and traffic offences. Lastly, the data does not account for citations that were dismissed or dropped after review, which could affect the accuracy of the results.
+
+
+\newpage
+
+\appendix
+
+# Appendix {-}
+
+
+# Data Cleaning (sec-data-cleaning)
+For data cleaning, we used packages like tidyverse, dplyr, and readr. Our focus was on all neighbourhoods that had data on police offences and average income. The offences data ranged from 2014 to 2023, while the only available income data for neighbourhoods was from 2015. We used two datasets, TorontoNeighbourhoodProfiles and TorontoPoliceData2024, and merged the information based on the neighbourhoods. To analyze the total offences committed by each neighbourhood, we summed the individual offence categories to get a single total per neighbourhood. After merging, any unavailable data, such as NA values, was removed. Finally, outliers were removed following an interquartile process. By running tests with lubridate and testthat, we ensured that our data was consistent and error-free.
+# Model details {#sec-model-details}
+
+## Linear Regression
+
+We implement a Simple Linear Regression Model.   
+This shows that every $1000 increase in neighbourhood income:   
+ - Total Tickets:  8.18  additional tickets will be given.  
+ - Aggressive Driving:  2.07  additional tickets will be given.  
+ - All CAIA:  0.68  additional tickets will be given.  
+ - Distracted Driving:  0.3  additional tickets will be given.  
+ - Other HTA:  1.26  additional tickets will be given.  
+ - Speeding:  3.87  additional tickets will be given.  
+
+## Diagnostics
+
+@fig-mainResidualDiagnostics-1 is a Residual vs. Fitted Values Plot. It shows a pattern in the spread of residuals, suggesting potential heteroscedasticity.
+
+@fig-mainResidualDiagnostics-2 is a Normal Q-Q Plot.It shows deviations from a straight line, suggesting that the residuals may not be normally distributed.
+
+@fig-mainResidualDiagnostics-3 is a Residuals vs. Predictors Plot. It shows potential non-random patterns, suggesting that the predictors may not fully account for all variability in the response variable.
+
+
+
+```{r}
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+#| label: fig-mainResidualDiagnostics
+#| fig-subcap: ["Residual vs. Fitted", "Normal Q-Q Plot", "Residuals vs. Predictors" ]
+#| layout-ncol: 2
+
+#### Load necessary libraries ####
+library(here)
+
+#### Load saved models ####
+all_models <- readRDS(here::here("models/all_offence_models.rds"))
+
+#### Function to plot the required 3 diagnostic plots ####
+plot_residual_diagnostics <- function(model, predictor_var) {
+  
+  # Residuals vs Fitted Values
+  plot(model, which = 1, main = "Residuals vs Fitted")
+  
+  # Normal Q-Q Plot
+  plot(model, which = 2, main = "Normal Q-Q")
+  
+  # Residuals vs Predictor (use the specified predictor variable)
+  plot(fitted(model), resid(model), main = paste("Residuals vs", predictor_var), 
+       xlab = predictor_var, ylab = "Residuals")
+}
+
+#### Plot the diagnostics for the Total_Tickets_model ####
+plot_residual_diagnostics(all_models[["Total_Tickets_model"]], predictor_var = "Income")
+``` 
+@fig-ResidualDiagnostics
+
+```{r}
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+#| label: fig-ResidualDiagnostics
+#| fig-cap: "Plots to Assess Residuals."
+#| fig-subcap: ["Aggressive Driving", "All CAIA", "Distracted Driving","OtherHTA", "Speeding" ]
+#| layout-ncol: 2
+
+#### Load necessary libraries ####
+library(here)
+
+#### Load saved models ####
+all_models <- readRDS(here::here("models/all_offence_models.rds"))
+
+#### Function to plot only 3 diagnostic plots ####
+plot_residual_diagnostics <- function(model, predictor_var) {
+  # Set up a 2x2 plot layout but only use 3 plots
+   par(mfrow = c(1,3))
+  
+  
+  # Residuals vs Fitted Values
+  plot(model, which = 1, main = "Residuals vs Fitted")
+  
+  # Normal Q-Q Plot
+  plot(model, which = 2, main = "Normal Q-Q")
+  
+  # Residuals vs Leverage (Predictors)
+  plot(fitted(model), resid(model), main = paste("Residuals vs", predictor_var), 
+       xlab = predictor_var, ylab = "Residuals")
+}
+
+model_names <- names(all_models)
+
+# plot each model in model_names
+for (i in 2:length(model_names)) {
+  model_name <- model_names[i]
+  plot_residual_diagnostics(all_models[[model_name]], predictor_var = "Income") 
+}
+```
+
+\newpage
+
+## References
+
+

@@ -1,6 +1,71 @@
 LLM: ChatGPT-4.
 Date: 23 September 2024
+
+
+
+
 Grammar and Spelling: 
+David: 
+fix my grammar: "Each point in these scatterplots are individual neighbourhoods. In these graphs (@fig-income), it is clear that there is a a weak positive correlation between income and the number of citations, but our most common offences like distracted driving and speeding have the strongest correlation out of the others. This is shown in @sec-mdoel and @sec-model-details . Lastly, we should note that these graphs, we can see there is high variation and a wide spread. This raises a question on whether there is a correlation on income and the amount of citations that are given out. In the next section we will explain how we made a correlation model to draw the red line and that can help us determine how strong the correlation is."
+
+ChatGPT
+Here is a refined version of your text:
+Each point in these scatterplots represents an individual neighborhood. In these graphs (@fig-income), it is evident that there is a weak positive correlation between income and the number of citations, with offenses like distracted driving and speeding showing the strongest correlations among all offense types. This is further illustrated in @sec-model and @sec-model-details. Lastly, we note that the graphs display high variation and a wide spread, raising the question of whether there is a significant correlation between income and the number of citations issued. In the next section, we will explain how we created a correlation model to draw the red line, which helps us assess the strength of this correlation
+
+David:
+fix my grammar: "As it can be seen in this graph, speeding is the most frequently given offence and aggressive driving has had little change over the years. Now that we know what offences are the most common, we will now look at the neighbourhoods. In (@fig-income) we can see the relationship between neighbourhoods incomes and the amount of offences committed.This data came from the 2015. This data comes from @TorontoNeighbourhoodProfiles. The data is a census of the population that collects information households such as age, sex, educations and for our purposes, income. The speicifc census we will look at is the 2016 and specifically we will look at _id 1030, "Average after-tax income of households in 2015 ($)" and it can give us a rough idea of the income of the neighbourhood. In @sec-data-cleaning we dicuss which neighbourhoods were looked at and why. "
+
+ChatGPT:
+As seen in this graph, speeding is the most frequently issued offense, while aggressive driving has shown little change over the years. Now that we have identified the most common offenses, we will examine the neighborhoods. In (@fig-income), we explore the relationship between neighborhood incomes and the number of offenses committed. This data comes from the 2015 Toronto Neighborhood Profiles, which is a census that collects information on households, including age, sex, education, and, for our purposes, income. Specifically, we will analyze the 2016 census data, focusing on _id 1030, "Average after-tax income of households in 2015 ($)," to approximate neighborhood income. In @sec-data-cleaning, we discuss the selection of neighborhoods and the rationale behind these choices.
+
+Daivd: 
+fix my grammar: "In this section we will be specifically looking at the types of offences, and how many citations they got from years from 2014 to 2023. We will specifically be looking at aggressive driving involves offences like tailgating, excessive lane changing, and road rage,  distracted driving includes actions like texting behind the wheel, both posing risks to road safety. Other traffic offences include speeding, violations under the Compulsory Automobile Insurance Act (CAIA) related to vehicle insurance, and miscellaneous offences under the Highway Traffic Act (HTA). The data of the frequency of each citation can be seen (@fig-citations), and was extract from @TorontoPoliceData2024. This dataset counts the number of tickets given by year, ticket type, offence, age group, division, and neighbourhood. In @sec-data-cleaning we discuss how this data was cleaned for our purposes. This data is the latest data reported, as recent as august 2nd. From this dataset, we are specifically going to be looking at the amount of offences commited by neighbourhood regardless of age. "
+
+ChatGPT:
+Here is a corrected and refined version of your text:
+In this section, we will specifically examine the types of offenses and the number of citations issued from 2014 to 2023. Our focus will be on aggressive driving offenses, which include tailgating, excessive lane changing, and road rage, as well as distracted driving, such as texting while driving—both of which pose risks to road safety. Other traffic offenses covered are speeding, violations under the Compulsory Automobile Insurance Act (CAIA) related to vehicle insurance, and miscellaneous offenses under the Highway Traffic Act (HTA). The frequency of each citation is visualized in (@fig-citations) and was extracted from @TorontoPoliceData2024. This dataset records the number of tickets issued by year, ticket type, offense, age group, division, and neighborhood. In @sec-data-cleaning, we discuss how this data was processed for our analysis. This dataset contains the most recent data available, as of August 2nd. Our analysis will focus on the total number of offenses committed by neighborhood, regardless of age.
+
+David: 
+fix my grammar: "# Introduction
+Toronto has a diverse set of neigbourhoods, from busy urban centres to quieter residential areas. Even with public transportation, driving is still a popular option and nothing is more annoying than a pesky traffic ticket. Maybe by looking at potential patterns in how traffic offences, we can potentially spot traps set out to catch drivers off guard or maybe areas for the city of toronto that are consistently dangerous for them to fix. Maybe we can use this data to avoid getting future speeding tickets. 
+We will be looking at how the income neighbourhoods affect police presence and how it affect citations overall. Another pattern that may be noticed is more dangerous roads that are prone for human error that leads to more violations given and this could be a potential exploit by officers as they may know this information beforehand. We will use @citeR for our analysis and @TorontoPoliceData2024 for our data.
+The remainder of this paper is structured as follows. @sec-data will explore our data from @TorontoPoliceData2024 and @TorontoNeighbourhoodProfiles and show any potential clusters and patterns that may be in the number of offences given, locations, and type of citation and we will use this to further analyze in @sec-model. Lastly, we will discuss our findings in @sec-result."
+
+ChatGPT:
+Here is a corrected and polished version of your introduction:
+# Introduction
+Toronto has a diverse range of neighborhoods, from busy urban centers to quieter residential areas. Even with public transportation, driving remains a popular option, and nothing is more frustrating than receiving a traffic ticket. By examining potential patterns in traffic offenses, we may be able to identify traps set to catch drivers off guard or pinpoint areas in Toronto that are consistently dangerous and require attention. Analyzing this data could also help drivers avoid future speeding tickets.
+We will explore how neighborhood income affects police presence and citations overall. Another potential pattern could involve dangerous roads that are prone to human error, leading to a higher number of violations, which may be exploited by officers who are aware of these trends. We will use @citeR for our analysis and @TorontoPoliceData2024 for our data.
+The remainder of this paper is structured as follows: @sec-data will explore our data from @TorontoPoliceData2024 and @TorontoNeighbourhoodProfiles, highlighting any potential clusters and patterns in the number of offenses, locations, and types of citations. We will then further analyze these findings in @sec-model. Finally, we will discuss our conclusions in @sec-result.
+
+David: 
+fix my grammar: ""This paper examines the relationship between traffic offences and neighbourhood income in Toronto. Using police reports from 2014 to 2023 and income data from the 2016 Toronto neighbourhood census, we analyze how offences such as speeding, aggressive driving, and distracted driving differ across different income levels. Through visualizations and linear regression models, we find that while a weak positive correlation exists between neighbourhood income and the frequency of citations, there are other factors that are likely contributing to traffic violations. Our findings raise questions about equitable enforcement practices and suggest further research into socioeconomic disparities in traffic offence distributions.""
+
+ChatGPT:
+Here is a corrected and polished version of your abstract:
+Abstract
+This paper examines the relationship between traffic offenses and neighborhood income in Toronto. Using police reports from 2014 to 2023 and income data from the 2016 Toronto neighborhood census, we analyze how offenses such as speeding, aggressive driving, and distracted driving vary across income levels. Through visualizations and linear regression models, we find that while a weak positive correlation exists between neighborhood income and the frequency of citations, other factors likely contribute to traffic violations. Our findings raise questions about equitable enforcement practices and suggest further research into socioeconomic disparities in traffic offense distributions.
+
+David: 
+help me fix my grammar "  The main focus of this paper is to determine whether there is a relationship between the number of offences and the income of a neighborhood. The results indicate that the relationship is weak but present, with aggressive driving and speeding showing the strongest connections to income. This raises questions about why wealthier neighborhoods are penalized more than lower-income ones. Perhaps wealthier neighborhoods have more speed cameras, or maybe speed cameras in lower-income areas are vandalized more frequently. It is also possible that police are targeting wealthier individuals, or that wealthier individuals are more willing to pay speeding tickets, while those in lower-income neighborhoods are more restrained to speed. These questions lead to broader inquiries, such as whether fines should be income-adjusted. "
+
+ChatGPT:
+Here is the improved version of your text with grammar corrections:
+"The primary focus of this paper is to determine whether there is a relationship between the number of offenses and the income of a neighborhood. The results indicate that this relationship is weak but present, with aggressive driving and speeding showing the strongest connections to income. This raises questions about why wealthier neighborhoods are penalized more than lower-income ones. Perhaps wealthier neighborhoods have more speed cameras, or maybe speed cameras in lower-income areas are more frequently vandalized. It is also possible that police are targeting wealthier individuals, or that wealthier individuals are more willing to pay speeding tickets, while those in lower-income neighborhoods are more cautious about speeding. These questions lead to broader inquiries, such as whether fines should be income-adjusted."
+
+David:
+fix my grammar: "Our data also suggests that we do not have the full picture. Other variables should be considered when analyzing the correlation between police activity and specific neighbourhoods. For instance, busier neighbourhoods might receive more offences simply due to higher traffic volume compared to quieter areas.Some neigbourhoods have school zones which may lead to an increase of offences. Time of offences could also be another factor that could be taken into account. Lastly, considering what @deLima2022 says about how data is collected in "Making Forest Data Fair and Open", it makes us wonder may have been collected without any considerations into socioeconomic background of neighbourhoods may reinforce pre-existing disparities, affecting how offenses are record and managed. There is risks on who collects traffic offence data and under what conditons and biases they may have. Accounting for these factors could provide a clearer understanding. "
+
+ChatGPT:
+Here is the improved version of your text with grammar corrections:
+"Our data also suggest that we do not have the full picture. Other variables should be considered when analyzing the correlation between police activity and specific neighborhoods. For instance, busier neighborhoods might receive more offenses simply due to higher traffic volume compared to quieter areas. Some neighborhoods have school zones, which may lead to an increase in offenses. The time of offenses could also be another factor to take into account. Lastly, considering what @deLima2022 discusses in 'Making Forest Data Fair and Open' about how data is collected, it raises questions about whether traffic data has been collected without consideration of the socioeconomic background of neighborhoods, potentially reinforcing pre-existing disparities and affecting how offenses are recorded and managed. There are risks related to who collects traffic offense data, under what conditions, and what biases they may have. Accounting for these factors could provide a clearer understanding."
+
+David:
+fix my grammar: " We have raised more questions than answers, but that was the purpose of this paper. If we could find a relationship between income and traffic offences, even if weak, than there might be other factors that might be affecting offences across Toronto. If we could find all these variables, we can use it to make Toronto fair and safe. At the end of the day, it is important to have driving laws and that they get enforced equally and fairly across Toronto. This paper should serve as a starting point to delve deeper into making sure police are being fair and just. While it would be great to use this data for our own personal benefit and beat the system, we have an ethical responsibility that we use public data in the best interest of the public. Just like the text @DataFeminism mentions "What gets counted counts", the data that is being presented here can help influence perceptions of traffic enforcment, and it can reveal broader patterns of unequal enforcement across differenct income levels."
+
+ChatGPT:
+Here is the improved version of your text with grammar corrections:
+"We have raised more questions than answers, but that was the purpose of this paper. If we can find a relationship between income and traffic offenses, even if weak, there might be other factors affecting offenses across Toronto. Identifying all these variables can help us make Toronto fairer and safer. At the end of the day, it is crucial to have driving laws that are enforced equally and fairly across the city. This paper should serve as a starting point to delve deeper into ensuring that police practices are just and equitable. While it might be tempting to use this data for personal benefit to avoid penalties, we have an ethical responsibility to use public data in the best interest of society. As stated in @DataFeminism, 'What gets counted counts.' The data presented here can shape perceptions of traffic enforcement and reveal broader patterns of unequal enforcement across different income levels."
 
 Daivd: 
 Can you fix my grammar: "# Model {#sec-model}
@@ -44,7 +109,6 @@ We expect a negative relationship between the number of offenses and neighborhoo
 ---
 This version improves clarity, fixes grammar issues, and makes your explanation of the modeling process more concise and readable.
 
-
 Daivd: can you fix my grammar : "# Discussion
 ## First discussion point {#sec-first-point}
 To begin, we should look at the main purpose of this paper, and that is to see if there is a relationship between the amount of offences and the income of that neighbourhood. As we can see [TODO: Talk about models results]
@@ -68,8 +132,54 @@ Weaknesses and Next Steps
 There may be bias in the data, as the income of a neighborhood could influence the amount of police activity in that area. This would lead to more citations being issued in lower-income neighborhoods due to higher police presence. Additionally, the linear regression model we used makes certain assumptions, which are further discussed in @sec-model-details, regarding how well the model fits the data.
 The next steps for this research would be to incorporate additional variables to provide a more comprehensive picture of the factors influencing the number of citations a neighborhood receives. Furthermore, using more sophisticated models could yield a more accurate understanding of the relationship between income and traffic offenses. Lastly, the data does not account for citations that were dismissed or dropped after being reviewed, which could affect the accuracy of the results.
 
-Linear Regression Model:
 
+
+
+
+
+Linear Regression Model:
+David: 
+Can you make sure you give me the residual vs fitted, qq residuals and residual vs predictor graphs with this code only: "plot_residual_diagnostics(all_models[["Total_Tickets_model"]])"
+
+ChatGPT:
+To ensure you get the Residuals vs Fitted, Normal Q-Q, and Residuals vs Predictor plots, you can explicitly modify the plot_residual_diagnostics function to generate these three plots. For the Residuals vs Predictor plot, you'll need to specify a particular predictor (e.g., Income) to use in that plot. Here's how you can adjust your code:
+Updated Code:
+r
+Copy code
+#### Load necessary libraries ####
+library(here)
+#### Load saved models ####
+all_models <- readRDS(here::here("models/all_offence_models.rds"))
+#### Function to plot the required 3 diagnostic plots ####
+plot_residual_diagnostics <- function(model, predictor_var) {
+  # Set up a layout with 1 row and 3 columns
+  par(mfrow = c(1, 3), mar = c(5, 4, 2, 1) + 0.1)  # Adjust margins for better spacing
+
+  # 1. Residuals vs Fitted Values
+  plot(model, which = 1, main = "Residuals vs Fitted")
+  
+  # 2. Normal Q-Q Plot
+  plot(model, which = 2, main = "Normal Q-Q")
+  
+  # 3. Residuals vs Predictor (use the specified predictor variable)
+  plot(fitted(model), resid(model), main = paste("Residuals vs", predictor_var), 
+       xlab = predictor_var, ylab = "Residuals")
+}
+#### Plot the diagnostics for the Total_Tickets_model ####
+# Assume 'Income' is the predictor variable you want to plot against residuals
+plot_residual_diagnostics(all_models[["Total_Tickets_model"]], predictor_var = "Income")
+Explanation of Changes:
+Residuals vs Fitted (Plot 1): plot(model, which = 1) generates the Residuals vs Fitted Values plot.
+Normal Q-Q (Plot 2): plot(model, which = 2) generates the Normal Q-Q plot.
+Residuals vs Predictor (Custom Plot): The third plot explicitly plots residuals against the values of a specified predictor (Income in this case) using the plot() function.
+Key Parameters:
+fitted(model): Extracts the fitted values from the model.
+resid(model): Extracts the residuals from the model.
+predictor_var = "Income": You can replace "Income" with any other predictor you want to use for the Residuals vs Predictor plot.
+This code will now generate the three specific diagnostic plots you requested when you call:
+r
+Copy code
+plot_residual_diagnostics(all_models[["Total_Tickets_model"]], 
 
 David: help me fix R code of my linear regression model that Models the relationship between neighborhood income and traffic offenses in Toronto: 
 #### Workspace setup ####
@@ -85,7 +195,6 @@ saveRDS(
   first_model,
   file = "models/offence_linear_regression.rds"
 )
-
 
 Chat-GPT4:
 Here’s the fixed R code for your linear regression model that analyzes the relationship between neighborhood income and traffic offenses in Toronto:
@@ -140,3 +249,542 @@ Copy code
 #### Residual diagnostics ####
 par(mfrow = c(2, 2))  # Arrange plots in a 2x2 grid
 plot(first_model)  # This will generate residual plots automatically
+
+David:
+is it possible to create a rds file that contains a list of many models
+"#### Preamble ####
+# Purpose: Models the relationship between neighborhood income and traffic offenses in Toronto using linear regression.
+# Author: Gadiel David Flores
+# Date: 23/09/24
+# Contact: davidgadiel.flores@mail.utoronto.ca
+# License: MIT
+# Pre-requisites: Requires the dataset tickets_issued_data.csv and average_income.csv to be in the data/sim_data folder
+#### Workspace setup ####
+library(tidyverse)
+#### Read data ####
+income_data <- read_csv(here::here("data/analysis_data/income_and_offences.csv"))
+#### Model data ####
+# Modeling for every increase of income, how many tickets get given out
+first_model <- lm(Total_Tickets ~ Income, data = income_data)
+Aggressive_Driving_model <- lm(Aggressive_Driving ~ Income, data = income_data)
+All_CAIA_model <- lm(All_CAIA ~ Income, data = income_data)
+Distracted_Driving <- lm(Distracted_Driving ~ Income, data = income_data)
+Other_HTA_model <- lm(Other_HTA ~ Income, data = income_data)
+Speeding <- lm(Speeding ~ Income, data = income_data)
+#### Save model ####
+saveRDS(
+  first_model,
+  file = "models/offence_linear_regression.rds"
+)
+"
+ChatGPT:
+Yes, it is absolutely possible to create an RDS file that contains a list of multiple models. You can bundle all your models into a list and then use saveRDS() to store them in a single RDS file. Here’s how you can modify your code to save all of your models together in one RDS file:
+Updated Code:
+r
+Copy code
+#### Preamble ####
+# Purpose: Models the relationship between neighborhood income and traffic offenses in Toronto using linear regression.
+# Author: Gadiel David Flores
+# Date: 23/09/24
+# Contact: davidgadiel.flores@mail.utoronto.ca
+# License: MIT
+# Pre-requisites: Requires the dataset `tickets_issued_data.csv` and `average_income.csv` to be in the `data/sim_data` folder
+#### Workspace setup ####
+library(tidyverse)
+#### Read data ####
+income_data <- read_csv(here::here("data/analysis_data/income_and_offences.csv"))
+#### Model data ####
+# Modeling for every increase of income, how many tickets get given out
+first_model <- lm(Total_Tickets ~ Income, data = income_data)
+Aggressive_Driving_model <- lm(Aggressive_Driving ~ Income, data = income_data)
+All_CAIA_model <- lm(All_CAIA ~ Income, data = income_data)
+Distracted_Driving_model <- lm(Distracted_Driving ~ Income, data = income_data)
+Other_HTA_model <- lm(Other_HTA ~ Income, data = income_data)
+Speeding_model <- lm(Speeding ~ Income, data = income_data)
+#### Combine models into a list ####
+all_models <- list(
+  Total_Tickets_model = first_model,
+  Aggressive_Driving_model = Aggressive_Driving_model,
+  All_CAIA_model = All_CAIA_model,
+  Distracted_Driving_model = Distracted_Driving_model,
+  Other_HTA_model = Other_HTA_model,
+  Speeding_model = Speeding_model
+)
+#### Save the list of models as an RDS file ####
+saveRDS(
+  all_models,
+  file = "models/all_offense_models.rds"
+)
+Key Changes:
+Combine models into a list: The models are stored in a list named all_models, with descriptive names for each model.
+saveRDS(all_models, file = "models/all_offense_models.rds"): Saves the list of models into a single RDS file.
+This RDS file can now be loaded later and will contain all the models in a structured format. You can load it using readRDS():
+r
+Copy code
+# Load the list of models
+loaded_models <- readRDS("models/all_offense_models.rds")
+# Access individual models
+loaded_models$Total_Tickets_model
+loaded_models$Aggressive_Driving_model
+Let me know if you need further adjustments!
+
+David: 
+change this code: "#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+#| label: fig-ResidualDiagnostics
+#| fig-cap: "Diagnostic plots to assess residuals."
+#| fig-subcap: ["Residuals vs. Fitted Values", "Normal Q-Q Plot", "Residuals vs. Predictors"]
+#| layout-ncol: 2
+#### Load necessary libraries ####
+library(here)
+#### Load saved models ####
+all_models <- readRDS(here::here("models/all_offence_models.rds"))
+#### Residual diagnostics for each model ####
+par(mfrow = c(2, 2))  # Arrange plots in a 2x2 grid
+# Loop through all models in the list and plot residual diagnostics
+for (model_name in names(all_models)) {
+  cat("Diagnostic plots for", model_name, "\n")  # Label each set of plots
+  plot(all_models[[model_name]])  # Plot residual diagnostics for the current model
+}" so it only shows 3 graphs per model, Residual vs. Fitted Values, Normal Q-Q Plot, and Residuals vs. Predictors Plot
+
+ChatGPT:
+To modify the code so that it only shows the three specific residual diagnostic plots—Residuals vs. Fitted Values, Normal Q-Q Plot, and Residuals vs. Predictors Plot—you need to selectively plot only these elements for each model. Here's how you can do it:
+r
+Copy code
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+#| label: fig-ResidualDiagnostics
+#| fig-cap: "Diagnostic plots to assess residuals."
+#| fig-subcap: ["Residuals vs. Fitted Values", "Normal Q-Q Plot", "Residuals vs. Predictors"]
+#| layout-ncol: 2
+#### Load necessary libraries ####
+library(here)
+#### Load saved models ####
+all_models <- readRDS(here::here("models/all_offence_models.rds"))
+#### Function to plot only 3 diagnostic plots ####
+plot_residual_diagnostics <- function(model) {
+  # Set up a 2x2 plot layout but only use 3 plots
+  par(mfrow = c(2, 2))
+  # 1. Residuals vs Fitted Values
+  plot(model, which = 1, main = "Residuals vs Fitted")
+  # 2. Normal Q-Q Plot
+  plot(model, which = 2, main = "Normal Q-Q")
+  # 3. Residuals vs Leverage (Predictors)
+  plot(model, which = 3, main = "Residuals vs Predictors")
+}
+#### Loop through each model and plot only the 3 chosen diagnostics ####
+for (model_name in names(all_models)) {
+  cat("Diagnostic plots for", model_name, "\n")  # Label each set of plots
+  plot_residual_diagnostics(all_models[[model_name]])  # Plot specific residual diagnostics for the current model
+}
+Key Changes:
+plot(model, which = 1): Plots the Residuals vs Fitted Values.
+plot(model, which = 2): Plots the Normal Q-Q Plot.
+plot(model, which = 3): Plots the Scale-Location or Residuals vs Predictors.
+par(mfrow = c(2, 2)): Sets a 2x2 plot grid but only 3 plots will be filled.
+This will generate the three specified diagnostic plots for each model: Residuals vs. Fitted Values, Normal Q-Q Plot, and Residuals vs. Predictors. You can modify the which argument to focus on any specific plot type, depending on what you need.
+
+
+
+
+Dataset Cleaning: 
+David: 
+for income_and_offences with "[1] "HOOD_158"            "NEIGHBOURHOOD_158.x" "Income"              "Total_Tickets"       "Aggressive_Driving"  "All_CAIA"            "Distracted_Driving" 
+[8] "Other_HTA"           "Speeding"    " can you delete rows that are outliers
+
+ChatGPT:
+To remove outliers from your dataset, income_and_offences, you can use the Interquartile Range (IQR) method to identify and remove rows where any of the numeric columns (e.g., Income, Total_Tickets, etc.) have outliers. Here's how you can apply the IQR method to detect and remove rows that contain outliers:
+Steps:
+Define Outliers: For each numeric column, values are considered outliers if they are below Q1 - 1.5*IQR or above Q3 + 1.5*IQR, where Q1 is the first quartile (25th percentile) and Q3 is the third quartile (75th percentile).
+Remove Rows with Outliers: Any row where one or more columns have outliers is removed.
+Code Example:
+r
+Copy code
+# Load necessary libraries
+library(dplyr)
+# Define a function to identify and remove outliers using IQR
+remove_outliers <- function(df) {
+  # Select only the numeric columns (Income, Total_Tickets, Aggressive_Driving, etc.)
+  numeric_cols <- df %>% select(Income, Total_Tickets, Aggressive_Driving, All_CAIA, Distracted_Driving, Other_HTA, Speeding)
+  # Calculate IQR for each numeric column
+  Q1 <- apply(numeric_cols, 2, quantile, 0.25, na.rm = TRUE)
+  Q3 <- apply(numeric_cols, 2, quantile, 0.75, na.rm = TRUE)
+  IQR <- Q3 - Q1
+  # Define limits for outliers
+  lower_bound <- Q1 - 1.5 * IQR
+  upper_bound <- Q3 + 1.5 * IQR
+  # Filter the data to remove rows with outliers
+  filtered_df <- df %>%
+    filter(
+      Income >= lower_bound["Income"] & Income <= upper_bound["Income"] &
+      Total_Tickets >= lower_bound["Total_Tickets"] & Total_Tickets <= upper_bound["Total_Tickets"] &
+      Aggressive_Driving >= lower_bound["Aggressive_Driving"] & Aggressive_Driving <= upper_bound["Aggressive_Driving"] &
+      All_CAIA >= lower_bound["All_CAIA"] & All_CAIA <= upper_bound["All_CAIA"] &
+      Distracted_Driving >= lower_bound["Distracted_Driving"] & Distracted_Driving <= upper_bound["Distracted_Driving"] &
+      Other_HTA >= lower_bound["Other_HTA"] & Other_HTA <= upper_bound["Other_HTA"] &
+      Speeding >= lower_bound["Speeding"] & Speeding <= upper_bound["Speeding"]
+    )
+  return(filtered_df)
+}
+# Apply the function to your dataset
+cleaned_data <- remove_outliers(income_and_offences)
+# View the cleaned data
+print(cleaned_data)
+Explanation:
+apply(numeric_cols, 2, quantile, 0.25, na.rm = TRUE): Computes the 25th percentile (Q1) for each numeric column.
+apply(numeric_cols, 2, quantile, 0.75, na.rm = TRUE): Computes the 75th percentile (Q3) for each numeric column.
+IQR <- Q3 - Q1: Calculates the interquartile range for each numeric column.
+lower_bound and upper_bound: Defines the range for non-outliers using the formula [𝑄1−1.5×𝐼𝑄𝑅,𝑄3+1.5×𝐼𝑄𝑅]
+[Q1−1.5×IQR,Q3+1.5×IQR].
+filter(): Removes rows where any of the numeric columns fall outside the calculated IQR bounds.
+This will give you a cleaned version of the income_and_offences dataset with outliers removed. Let me know if you need further adjustments!
+
+
+David: 
+can you help me fix this "summary_neighbourhood_data <- raw_offence_data %>%
+  group_by(NEIGHBOURHOOD_158, HOOD_158) %>%
+  summarise(Total_Tickets = sum(TICKET_COUNT), .groups = 'drop')" i want the headers to be NEIGHBOURHOOD_158, HOOD_158, a total ticket_count , then total aggressive driving, then total ALL CAIA, then total Disctracted Driving, then total Other HTA, then Speeding. 
+  
+Chat-GPT: 
+to achieve the result you want, we can modify your code to:
+Group the data by NEIGHBOURHOOD_158 and HOOD_158.
+Calculate the total tickets for each offense type (Aggressive Driving, All CAIA, Distracted Driving, Other HTA, and Speeding).
+Summarize the total counts for each category as well as the total ticket count across all categories.
+Here's the adjusted code to achieve this:
+r
+Copy code
+# Summarize the data for each neighborhood
+summary_neighbourhood_data <- raw_offence_data %>%
+  group_by(NEIGHBOURHOOD_158, HOOD_158) %>%
+  summarise(
+    Total_Tickets = sum(TICKET_COUNT, na.rm = TRUE),
+    Aggressive_Driving = sum(TICKET_COUNT[OFFENCE_CATEGORY == "Aggressive Driving"], na.rm = TRUE),
+    All_CAIA = sum(TICKET_COUNT[OFFENCE_CATEGORY == "All CAIA"], na.rm = TRUE),
+    Distracted_Driving = sum(TICKET_COUNT[OFFENCE_CATEGORY == "Distracted Driving"], na.rm = TRUE),
+    Other_HTA = sum(TICKET_COUNT[OFFENCE_CATEGORY == "Other HTA"], na.rm = TRUE),
+    Speeding = sum(TICKET_COUNT[OFFENCE_CATEGORY == "Speeding"], na.rm = TRUE),
+    .groups = 'drop'
+  )
+# View the summary data
+print(summary_neighbourhood_data)
+Explanation:
+group_by(NEIGHBOURHOOD_158, HOOD_158): Groups the data by neighborhood and hood.
+summarise(): Summarizes the data to calculate:
+Total_Tickets: Sum of all tickets.
+Aggressive_Driving, All_CAIA, Distracted_Driving, Other_HTA, Speeding: Sum of tickets for each offense category using conditional subsetting with OFFENCE_CATEGORY == "Category_Name".
+na.rm = TRUE: Ensures that any missing values (NAs) are ignored in the calculations.
+This will give you a data frame where the columns are:
+NEIGHBOURHOOD_158
+HOOD_158
+Total_Tickets (total ticket count)
+Aggressive_Driving
+All_CAIA
+Distracted_Driving
+Other_HTA
+Speeding
+Each row corresponds to a neighborhood, with the total ticket counts and the counts for each specific offense category. Let me know if you need any further adjustments!
+
+David: 
+raw_offence_data <- read_csv("data/raw_data/raw_offences_data.csv")
+new_offence_data <- subset(as.data.frame(raw_offence_data), select = c(OFFENCE_YEAR, OFFENCE_CATEGORY, HOOD_158, NEIGHBOURHOOD_158, TICKET_COUNT))
+new_offence_data
+For this dataset, each row represents a different entry logging the offence committed, the year, and the number of tickets issued. I want to create a cleaned dataset organized by neighbourhood name. The top row should contain the names of the neighbourhoods, and the rows below should summarize the types of offences committed, the years in which they occurred, and the corresponding ticket counts.
+
+Chat-GPT:
+To create a dataset where the top column represents the neighbourhoods and the rows summarize the offences, years, and ticket counts, you can follow these steps. This process involves:
+Selecting the relevant columns.
+Summarizing the offences by neighbourhood, offence year, and offence category.
+Reshaping the dataset so that each neighbourhood is a column with the offence details summarized below.
+Here’s how you can achieve this:
+r
+Copy code
+# Load necessary libraries
+library(tidyverse)
+# Load the dataset
+raw_offence_data <- read_csv("data/raw_data/raw_offences_data.csv")
+
+# Select the relevant columns
+new_offence_data <- raw_offence_data %>%
+  select(OFFENCE_YEAR, OFFENCE_CATEGORY, HOOD_158, NEIGHBOURHOOD_158, TICKET_COUNT)
+# Summarize the data by neighbourhood, year, and offence category
+summary_data <- new_offence_data %>%
+  group_by(NEIGHBOURHOOD_158, OFFENCE_YEAR, OFFENCE_CATEGORY) %>%
+  summarise(Total_Tickets = sum(TICKET_COUNT), .groups = 'drop')
+
+# Reshape the data so that the neighbourhoods are the columns
+reshaped_data <- summary_data %>%
+  pivot_wider(
+    names_from = NEIGHBOURHOOD_158,  # Neighbourhoods will be the columns
+    values_from = Total_Tickets,      # Values will be the total ticket counts
+    names_glue = "{NEIGHBOURHOOD_158}"  # Column names will be the neighbourhood names
+  )
+# View the reshaped data
+print(reshaped_data)
+Explanation:
+Data Selection: We select the relevant columns: OFFENCE_YEAR, OFFENCE_CATEGORY, HOOD_158, NEIGHBOURHOOD_158, and TICKET_COUNT.
+Summarization: Using group_by(), the data is grouped by NEIGHBOURHOOD_158, OFFENCE_YEAR, and OFFENCE_CATEGORY, and we calculate the total number of tickets using summarise().
+Reshaping: We use pivot_wider() to convert the NEIGHBOURHOOD_158 column into individual columns representing each neighbourhood. The values inside these columns will be the total ticket counts for each offence category and year.
+Result:
+Each column will be a neighbourhood, and the rows will summarize the total tickets issued for each offence category and year. If you want additional detail, such as separating offence types in the rows, further customization can be done.
+Let me know if you need more specific adjustments!
+
+David: 
+Can you fix my code 
+common_columns <- intersect(names(reshaped_data)[-c(1, 2)], names(income_data_cleaned))
+reshaped_data_filtered <- reshaped_data %>%
+  select(c("OFFENCE_YEAR", "OFFENCE_CATEGORY", common_columns))
+income_data_cleaned_filtered <- income_data_cleaned %>%
+  select(common_columns)
+combined_data <- bind_rows(reshaped_data_filtered, income_data_cleaned_filtered)
+print(combined_data)
+write_csv(combined_data, "data/analysis_data/analysis_data.csv")
+The problem is that the rthere is two columns in reshaped_Data that isnt on income_Data which are [1] "OFFENCEYEAR"                      "OFFENCECATEGORY"  , id like you to leave those columns as they are. they are the only exception
+
+Chat-GPT: 
+To fix your code while keeping the OFFENCEYEAR and OFFENCECATEGORY columns in reshaped_data, you need to ensure that these columns are excluded from the comparison between reshaped_data and income_data_cleaned, but still retained in the final combined dataset.
+Here's the updated code:
+r
+Copy code
+#### Merge cleaned neighborhood and offences data set and Save data ####
+# Assuming both reshaped_data and income_data_cleaned are already loaded
+# Align the column names of both datasets if necessary
+# Make sure the column names of reshaped_data match the format in income_data_cleaned
+# Find the common columns between both datasets (excluding the first two columns in reshaped_data)
+common_columns <- intersect(names(reshaped_data)[-c(1, 2)], names(income_data_cleaned))
+# Filter both datasets to keep only the common columns
+# For reshaped_data, keep the "OFFENCEYEAR", "OFFENCECATEGORY", and the common neighborhood columns
+reshaped_data_filtered <- reshaped_data %>%
+  select(c("OFFENCEYEAR", "OFFENCECATEGORY", common_columns))
+# For income_data_cleaned, keep only the common neighborhood columns
+income_data_cleaned_filtered <- income_data_cleaned %>%
+  select(common_columns)
+# Now append the rows of income_data_cleaned under reshaped_data
+# This assumes that both datasets are aligned correctly by column
+# For the two columns 'OFFENCEYEAR' and 'OFFENCECATEGORY', fill missing values in income_data_cleaned with NA
+income_data_cleaned_filtered <- income_data_cleaned_filtered %>%
+  mutate(OFFENCEYEAR = NA, OFFENCECATEGORY = NA)
+# Bind the two datasets, ensuring proper alignment
+combined_data <- bind_rows(reshaped_data_filtered, income_data_cleaned_filtered)
+# View the final combined dataset
+print(combined_data)
+# Save the combined data to a CSV file
+write_csv(combined_data, "data/analysis_data/analysis_data.csv")
+Explanation:
+Common Columns: We identify the common neighborhood columns between reshaped_data and income_data_cleaned (excluding "OFFENCEYEAR" and "OFFENCECATEGORY" from reshaped_data).
+Filter Datasets: We filter both datasets to retain only the common columns and ensure that reshaped_data keeps the "OFFENCEYEAR" and "OFFENCECATEGORY" columns.
+Mutate: For income_data_cleaned, we add two new columns (OFFENCEYEAR and OFFENCECATEGORY) and fill them with NA to match the structure of reshaped_data.
+Bind Rows: We then combine both datasets (reshaped_data_filtered and income_data_cleaned_filtered) using bind_rows().
+Save Output: Finally, we save the resulting combined data as a CSV file.
+This will merge the datasets while keeping "OFFENCEYEAR" and "OFFENCECATEGORY" intact. Let me know if you need further adjustments!
+
+David: 
+in this code: "#### Clean Neighborhood data ####
+# Load the raw data
+raw_neighbourhood_data <- read_csv("data/raw_data/raw_neighbourhood_data.csv")
+# Rename the '_id' column to 'id'
+raw_neighbourhood_data <- raw_neighbourhood_data %>%
+  rename(id = _id)
+# Filter rows where id is equal to 1030
+income_data <- raw_neighbourhood_data %>%
+  filter(id == 1030)
+# Remove the first 6 columns
+income_data_cleaned <- income_data %>%
+  select(-c(1:6))" also include id == 1
+
+ChatGPT:
+To include rows where id is equal to either 1030 or 1, you can modify the filter condition using the %in% operator to check for both values. Here's how you can adjust the code:
+r
+Copy code
+#### Clean Neighborhood data ####
+# Load the raw data
+raw_neighbourhood_data <- read_csv("data/raw_data/raw_neighbourhood_data.csv")
+# Rename the '_id' column to 'id'
+raw_neighbourhood_data <- raw_neighbourhood_data %>%
+  rename(id = `_id`)
+# Filter rows where id is equal to 1030 or 1
+income_data <- raw_neighbourhood_data %>%
+  filter(id %in% c(1030, 1))
+# Remove the first 6 columns
+income_data_cleaned <- income_data %>%
+  select(-c(1:6))
+# View the cleaned data
+print(income_data_cleaned)
+Explanation:
+filter(id %in% c(1030, 1)): This line filters the data to include rows where the id column is either 1030 or 1.
+
+David: 
+i want you to merge both of these datasets: "names(income_data)
+[1] "NEIGHBOURHOOD_158" "HOOD_158"          "Income"           
+> names(summary_neighbourhood_data)
+[1] "NEIGHBOURHOOD_158" "HOOD_158"          "Total_Tickets"    " you should go by hood_158 to merge both datasets. There is neighbourhoods not in income_data that there is in summary_neighbourhood_data and vice versa. So make sure that each point goes where it should go. At the end of the merging, the final dataset should have names(income_and_offences) [1] "NEIGHBOURHOOD_158" "HOOD_158"          "Income"    ""Total_Tickets" 
+
+ChatGPT:
+To merge the two datasets income_data and summary_neighbourhood_data based on the column HOOD_158, we can use the merge() function in R. This will allow us to perform a full join (including all rows from both datasets, even if some HOOD_158 values are missing in one dataset).
+Here’s how you can do it:
+r
+Copy code
+# Assuming income_data and summary_neighbourhood_data are your two datasets
+# Perform a full join by HOOD_158
+income_and_offences <- merge(income_data, summary_neighbourhood_data, 
+                             by = "HOOD_158", 
+                             all = TRUE)  # 'all=TRUE' performs a full outer join
+# View the merged data
+head(income_and_offences)
+# Check the column names of the merged dataset to ensure they match the required output
+names(income_and_offences)
+Explanation:
+merge(income_data, summary_neighbourhood_data, by = "HOOD_158", all = TRUE) merges both datasets on the HOOD_158 column and includes all rows from both datasets, ensuring that neighborhoods present in one dataset but not the other are also included.
+If a neighborhood is missing in one dataset, the corresponding columns (such as Income or Total_Tickets) will be filled with NA.
+The resulting dataset income_and_offences will have the columns NEIGHBOURHOOD_158, HOOD_158, Income, and Total_Tickets.
+After this, you should have the merged dataset with the required columns. Let me know if you need any further customization!
+
+David: 
+can you clean my income_and_offences: "#### Merge cleaned neighborhood and offences data set and Save data ####
+# Perform a full join by HOOD_158
+income_and_offences <- merge(income_data, summary_neighbourhood_data, 
+                             by = "HOOD_158", 
+                             all = TRUE) 
+income_and_offences <- income_and_offences %>%
+  select(-c(4:4))" so that if columns 3 and 4 get check for an NA. If an NA occurs, delete that row
+
+ChatGPT:
+To clean the income_and_offences dataset and remove rows where either Income (column 3) or Total_Tickets (column 4) contains an NA, you can use the na.omit() function or filter() from the dplyr package. Here's how to do it with dplyr:
+r
+Copy code
+library(dplyr)
+#### Merge cleaned neighborhood and offences data set and Save data ####
+# Perform a full join by HOOD_158
+income_and_offences <- merge(income_data, summary_neighbourhood_data, 
+                             by = "HOOD_158", 
+                             all = TRUE)
+# Remove rows where either Income (column 3) or Total_Tickets (column 4) is NA
+income_and_offences_cleaned <- income_and_offences %>%
+  filter(!is.na(Income) & !is.na(Total_Tickets))
+# View the cleaned dataset
+head(income_and_offences_cleaned)
+Explanation:
+filter(!is.na(Income) & !is.na(Total_Tickets)): This ensures that both Income and Total_Tickets columns are checked for NA values. Rows containing NA in either of these columns will be removed.
+The final cleaned dataset is stored in income_and_offences_cleaned.
+This should effectively clean your dataset by removing any rows where Income or Total_Tickets is missing. Let me know if you need further adjustments!
+
+David: 
+help me make a bar graph that takes tickets_data <- read.csv(here::here("data/analysis_data/analysis_data.csv")) with headers [1] "NEIGHBOURHOOD_158" "HOOD_158"          "OFFENCE_YEAR"      "OFFENCE_CATEGORY"  "Total_Tickets"  and looks at offence_category and for every year that an offence was commited of that offence, it creates a new bar for that offence_category. At the end I need a graph that shows me the offences commited on the y axis, x axis is the type, and the bars represent the year
+
+ChatGPT:
+To create a bar graph that shows the number of offenses (from OFFENCE_CATEGORY) for each year, grouped by offense type, you can use ggplot2. Here is the step-by-step R code to achieve that, assuming your dataset has the structure you mentioned:
+Required Steps:
+Group the data by OFFENCE_CATEGORY and OFFENCE_YEAR.
+Summarize the total tickets for each combination of OFFENCE_CATEGORY and OFFENCE_YEAR.
+Plot a bar graph where the x-axis represents the OFFENCE_CATEGORY, the y-axis represents the number of offenses (Total Tickets), and different bars represent the year.
+Code:
+r
+Copy code
+# Load necessary libraries
+library(ggplot2)
+library(here)
+library(dplyr)
+# Load the dataset
+tickets_data <- read.csv(here::here("data", "analysis_data", "analysis_data.csv"))
+# Summarize the data to get the total tickets per Offence Category and Year
+tickets_summary <- tickets_data %>%
+  group_by(OFFENCE_CATEGORY, OFFENCE_YEAR) %>%
+  summarize(Total_Tickets = sum(Total_Tickets, na.rm = TRUE))
+# Create the bar plot
+ggplot(tickets_summary, aes(x = OFFENCE_CATEGORY, y = Total_Tickets, fill = as.factor(OFFENCE_YEAR))) +
+  geom_bar(stat = "identity", position = "dodge") +  # Position bars side by side for each year
+  labs(title = "Total Offenses per Category by Year",
+       x = "Offense Category",
+       y = "Total Tickets",
+       fill = "Offense Year") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for readability
+Explanation:
+group_by(OFFENCE_CATEGORY, OFFENCE_YEAR): Groups the data by offense category and year.
+summarize(Total_Tickets = sum(Total_Tickets, na.rm = TRUE)): Summarizes the total number of tickets (offenses) for each combination of offense category and year.
+geom_bar(stat = "identity", position = "dodge"): Creates a bar graph, with side-by-side bars (position = "dodge") for each offense category and year.
+fill = as.factor(OFFENCE_YEAR): Different bars for each year are colored separately using the year as the grouping factor.
+theme(axis.text.x = element_text(angle = 45, hjust = 1)): Rotates the x-axis labels to prevent overlap and improve readability.
+This code will produce a bar graph where each OFFENCE_CATEGORY is displayed on the x-axis, the number of offenses (tickets) is on the y-axis, and the bars for each offense type are grouped by the year in which the offenses occurred.
+Let me know if you need further adjustments!
+
+David: 
+can you help me create 5 subplots similar to the first scatterplot, but instead of income vs total_tickets it will be income vs ""Total_Tickets"       "Aggressive_Driving"  "All_CAIA"            "Distracted_Driving" 
+[8] "Other_HTA"           "Speeding"      "
+
+ChatGPT:
+To create 5 subplots with different offense categories (i.e., Aggressive_Driving, All_CAIA, Distracted_Driving, Other_HTA, Speeding), you can make use of facet_wrap in ggplot2 or create individual plots and combine them using gridExtra or patchwork. Here, I’ll guide you on how to do both.
+Option 1: Using facet_wrap for a Single Plot with Subplots
+You can create one plot and use facet_wrap to automatically generate subplots for each offense type. This assumes you reshape your data from wide format to long format.
+Reshaping Data to Long Format
+r
+Copy code
+# Load necessary libraries
+library(ggplot2)
+library(here)
+library(dplyr)
+library(tidyr)
+library(scales)
+# Load the dataset
+income_data <- read.csv(here::here("data", "analysis_data", "income_and_offences.csv"))
+# Reshape data from wide to long format for offense categories
+long_income_data <- income_data %>%
+  pivot_longer(cols = c("Total_Tickets", "Aggressive_Driving", "All_CAIA", 
+                        "Distracted_Driving", "Other_HTA", "Speeding"), 
+               names_to = "Offense_Category", 
+               values_to = "Offense_Tickets")
+# Create the scatterplot with faceting for each offense category
+ggplot(long_income_data, aes(x = Income, y = Offense_Tickets)) +
+  geom_point(color = "black", alpha = 0.6) +
+  scale_x_continuous(labels = scales::comma) +  # Format x-axis with comma-separated labels
+  labs(title = "Income vs Offense Tickets by Neighbourhood",
+       x = "Income",
+       y = "Tickets Count") +
+  facet_wrap(~ Offense_Category, scales = "free_y") +  # Create a subplot for each offense category
+  theme_minimal()
+Option 2: Using gridExtra for Separate Plots
+If you prefer individual plots and want to combine them into a grid, you can use the gridExtra library:
+r
+Copy code
+# Load necessary libraries
+library(ggplot2)
+library(here)
+library(gridExtra)
+# Load the dataset
+income_data <- read.csv(here::here("data", "analysis_data", "income_and_offences.csv"))
+# Create individual scatterplots for each offense type
+p1 <- ggplot(income_data, aes(x = Income, y = Total_Tickets)) +
+  geom_point(color = "black", alpha = 0.6) +
+  scale_x_continuous(labels = scales::comma) +
+  labs(title = "Income vs Total Tickets", x = "Income", y = "Total Tickets") +
+  theme_minimal()
+p2 <- ggplot(income_data, aes(x = Income, y = Aggressive_Driving)) +
+  geom_point(color = "black", alpha = 0.6) +
+  scale_x_continuous(labels = scales::comma) +
+  labs(title = "Income vs Aggressive Driving", x = "Income", y = "Aggressive Driving Tickets") +
+  theme_minimal()
+p3 <- ggplot(income_data, aes(x = Income, y = All_CAIA)) +
+  geom_point(color = "black", alpha = 0.6) +
+  scale_x_continuous(labels = scales::comma) +
+  labs(title = "Income vs All CAIA", x = "Income", y = "All CAIA Tickets") +
+  theme_minimal()
+p4 <- ggplot(income_data, aes(x = Income, y = Distracted_Driving)) +
+  geom_point(color = "black", alpha = 0.6) +
+  scale_x_continuous(labels = scales::comma) +
+  labs(title = "Income vs Distracted Driving", x = "Income", y = "Distracted Driving Tickets") +
+  theme_minimal()
+p5 <- ggplot(income_data, aes(x = Income, y = Other_HTA)) +
+  geom_point(color = "black", alpha = 0.6) +
+  scale_x_continuous(labels = scales::comma) +
+  labs(title = "Income vs Other HTA", x = "Income", y = "Other HTA Tickets") +
+  theme_minimal()
+# Arrange the plots in a grid
+grid.arrange(p1, p2, p3, p4, p5, ncol = 2)
+Key Changes:
+pivot_longer() reshapes the data from wide format (multiple columns for different offense types) into a long format suitable for faceting.
+facet_wrap(~ Offense_Category) generates subplots for each offense type.
+In Option 2, separate plots (p1, p2, p3, etc.) are created for each offense type, and grid.arrange() combines them into a grid.
+Let me know if you have a preference or need further modifications!

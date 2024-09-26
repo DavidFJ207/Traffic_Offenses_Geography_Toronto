@@ -25,6 +25,5 @@ first_model <- lm(tickets_issued ~ average_income, data = merged_data)
 #### Save model ####
 saveRDS(
   first_model,
-  file = "models/sim_offence_linear_regression.rds"
+  file = "models/offence_linear_regression.rds"
 )
-

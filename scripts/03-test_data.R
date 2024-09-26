@@ -11,16 +11,14 @@ library(tidyverse)
 library(lubridate)
 library(dplyr)
 library(testthat)
+library(here)
 
 #### Test data ####
 # Sample test dataset creation
 sample_data <- function() {
   
   # Load data from CSV
-  data <- read.csv("data/analysis_data/cleaned_tickets_issued_data.csv")
-  
-  # Convert 'OFFENCE_YEAR' to a datetime format
-  data$OFFENCE_YEAR <- ymd(paste0(data$OFFENCE_YEAR, "-01-01"))
+  data <- read.csv(here("data", "analysis_data", "income_and_offences.csv"))
   
   return(data)
 }
@@ -29,10 +27,10 @@ sample_data <- function() {
 test_that("Data types are correct", {
   df <- sample_data()
   
-  expect_type(df$`_id`, "integer")
-  expect_type(df$DIVISION, "character")
-  expect_type(df$TICKET_COUNT, "integer")
-  expect_s3_class(df$OFFENCE_YEAR, "Date")
+  expect_type(df$HOOD_158, "integer")
+  expect_type(df$NEIGHBOURHOOD_158.x, "character")
+  expect_type(df$Income, "integer")
+  expect_type(df$Total_Tickets, "integer")
 })
 
 # Test that ticket counts are non-negative
@@ -42,21 +40,14 @@ test_that("Ticket counts should be non-negative", {
   expect_true(all(df$TICKET_COUNT >= 0), info = "TICKET_COUNT should be non-negative.")
 })
 
-# Test for valid time periods format (should be datetime)
-test_that("OFFENCE_YEAR should be in datetime format", {
-  df <- sample_data()
-  
-  expect_s3_class(df$OFFENCE_YEAR, "Date")
-})
-
 # Test for non-null fields
 test_that("Non-null values in important fields", {
   df <- sample_data()
   
-  expect_true(all(!is.na(df$`_id`)), info = "_id should not contain null values.")
-  expect_true(all(!is.na(df$DIVISION)), info = "DIVISION should not contain null values.")
-  expect_true(all(!is.na(df$TICKET_COUNT)), info = "TICKET_COUNT should not contain null values.")
-  expect_true(all(!is.na(df$OFFENCE_YEAR)), info = "OFFENCE_YEAR should not contain null values.")
+  expect_true(all(!is.na(df$HOOD_158)), info = "_id should not contain null values.")
+  expect_true(all(!is.na(df$NEIGHBOURHOOD_158.x)), info = "DIVISION should not contain null values.")
+  expect_true(all(!is.na(df$Income)), info = "Income_COUNT should not contain null values.")
+  expect_true(all(!is.na(df$Total_Tickets)), info = "TICKET_COUNT should not contain null values.")
 })
 
 # Test for duplicates
@@ -72,12 +63,4 @@ test_that("Valid DIVISION values", {
   valid_divisions <- c('NSA', 'ET', 'NY', 'SC', 'TO', 'YK') # Add valid DIVISION codes here
   
   expect_true(all(df$DIVISION %in% valid_divisions), info = "Invalid DIVISION value found.")
-})
-
-# Test for reasonable date range (example: dates should be from 2010 onwards)
-test_that("Reasonable date range for OFFENCE_YEAR", {
-  df <- sample_data()
-  start_date <- as.Date('2010-01-01')
-  
-  expect_true(all(df$OFFENCE_YEAR >= start_date), info = "OFFENCE_YEAR should be from 2010 onwards.")
 })

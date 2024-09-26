@@ -2,8 +2,7 @@
 
 ## Overview
 
-This repo provides students with a foundation for their own projects associated with *Telling Stories with Data*. You do not need every aspect for every paper and you should delete aspects that you do not need.
-
+This repository contains the analysis of traffic offenses across Toronto neighborhoods, with a focus on exploring the relationship between neighborhood income and the number of traffic citations issued. The project aims to provide insights into correlations between socioeconomic factors and traffic violations.
 
 ## File Structure
 
@@ -21,10 +20,3 @@ The repo is structured as:
 
 Aspects of the code were written with the help of the Chat-GPT.
 
-## Some checks
-
-- [ ] Change the rproj file name so that it's not starter_folder.Rproj
-- [ ] Change the README title so that it's not Starter folder
-- [ ] Remove files that you're not using
-- [ ] Update comments in R scripts
-- [ ] Remove this checklist
