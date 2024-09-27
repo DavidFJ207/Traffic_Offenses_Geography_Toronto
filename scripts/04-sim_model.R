@@ -15,11 +15,9 @@ income_data <- read_csv("data/sim_data/average_income.csv")
 tickets_data <- read_csv("data/sim_data/tickets_issued_data.csv")
 
 #### Merge datasets by neighbourhood ####
-# Ensure both datasets have a common key to merge on, like 'neighborhood'
 merged_data <- inner_join(tickets_data, income_data, by = "neighbourhood")
 
 #### Model data ####
-# Assuming `tickets_issued` is the column for number of tickets and `average_income` is the column for income
 first_model <- lm(tickets_issued ~ average_income, data = merged_data)
 
 #### Save model ####

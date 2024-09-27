@@ -6,7 +6,7 @@ author:
 thanks: "Code and data are available at: https://github.com/DavidFJ207/Traffic_offences_Geography_Toronto"
 date: today
 date-format: long
-abstract: "This paper examines the relationship between traffic offences and neighbourhood income in Toronto. Using police reports from 2014 to 2023 and income data from the 2016 Toronto neighbourhood census, we analyze how offences such as speeding, aggressive driving, and distracted driving vary across income levels. Through visualizations and linear regression models, we find that while a weak positive correlation exists between neighbourhood income and the frequency of citations, other factors likely contribute to traffic violations. Our findings raise questions about equitable enforcement practices and suggest further research into socioeconomic disparities in traffic offence distributions."
+abstract: "This paper looks the relationship between traffic offences and neighbourhood income in Toronto. We analyze how offences such as speeding, aggressive driving, and distracted driving change across income levels. Through visualizations and linear regression models, we find that while a weak positive correlation exists between neighbourhood income and the frequency of citations, other factors likely contribute to traffic violations. Our findings raise questions about fair enforcement practices and suggest further research into disparities in traffic offence distributions."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -26,11 +26,11 @@ Toronto has a diverse range of neighbourhoods, from busy urban centers to quiete
 
 We will explore how neighbourhood income affects police presence and citations overall. Another potential pattern could involve dangerous roads that are prone to human error, leading to a higher number of violations, which may be exploited by officers who are aware of these trends. We will use @citeR for our analysis and @TorontoPoliceData2024 for our primary data.
 
-The remainder of this paper is structured as follows: @sec-data will explore our data from @TorontoPoliceData2024 and @TorontoNeighbourhoodProfiles, highlighting any potential clusters and patterns in the number of offences, locations, and types of citations. We will then further analyze these findings in @sec-model. Finally, we will discuss our conclusions in @sec-result.
+The remainder of this paper is structured as follows: @sec-data will explore our data from @TorontoPoliceData2024 and @TorontoNeighbourhoodProfiles, highlighting any potential clusters and patterns in the number of offences, locations, and types of citations. We will then further analyze these findings in @sec-model. Finally, we will discuss our conclusions in @sec-results.
 
 
 # Data {#sec-data}
-In this section, we will specifically examine the types of offences and the number of citations issued from 2014 to 2023. Our focus will be on aggressive driving offences, which include tailgating, excessive lane changing, and road rage, as well as distracted driving, such as texting while driving—both of which pose risks to road safety. Other traffic offences covered are speeding, violations under the Compulsory Automobile Insurance Act (CAIA) related to vehicle insurance, and miscellaneous offences under the Highway Traffic Act (HTA). The frequency of each citation is visualized in (@fig-citations) and was extracted from @TorontoPoliceData2024. This dataset records the number of tickets issued by year, ticket type, offence, age group, division, and neighbourhood. In @sec-data-cleaning, we discuss how this data was processed for our analysis. This dataset contains the most recent data available, as of August 2nd. Our analysis will focus on the total number of offences committed by neighbourhood, regardless of age.
+In this section, we will specifically examine the types of offences and the number of citations issued from 2014 to 2023. Our focus will be on aggressive driving offences like road rage, as well as distracted driving, such as texting while driving, all which pose risks to road safety. Other traffic offences covered are speeding, violations under the Compulsory Automobile Insurance Act (CAIA) related to vehicle insurance, and miscellaneous offences under the Highway Traffic Act (HTA). The frequency of each citation is visualized in (@fig-citations) and was extracted from @TorontoPoliceData2024. This dataset records the number of tickets issued by year, ticket type, offence, age group, division, and neighbourhood. In @sec-cleaning, we discuss how this data was processed for our analysis. This dataset contains the most recent data available, as of August 2nd. Our analysis will focus on the total number of offences committed by neighbourhood, regardless of age.
 
 ```{r}
 #| label: fig-citations
@@ -70,7 +70,7 @@ ggplot(tickets_summary, aes(x = OFFENCE_CATEGORY, y = Total_Tickets, fill = as.f
 
 ```
 
-As seen in this graph, speeding is the most frequently issued offence, while aggressive driving has shown little change over the years. Now that we have identified the most common offences, we will examine the neighbourhoods. In (@fig-income), we explore the relationship between neighbourhood incomes and the number of offences committed. This data comes from the 2016 Toronto neighbourhood Profiles, which is a census that collects information on households, including age, sex, education, and, for our purposes, income. Specifically, we will analyze the 2016 census data, focusing on _id 1030, "Average after-tax income of households in 2015 ($)," to approximate neighbourhood income. In @sec-data-cleaning, we discuss the selection of neighbourhoods and the rationale behind these choices.
+As seen in this graph, speeding is the most frequently issued offence, while aggressive driving has shown little change over the years. Now that we have identified the most common offences, we will examine the neighbourhoods. In (@fig-income), we explore the relationship between neighbourhood incomes and the number of offences committed. This data comes from the 2016 Toronto neighbourhood Profiles, which is a census that collects information on households, including age, sex, education, and, for our purposes, income. Specifically, we will analyze the 2016 census data, focusing on "Average after-tax income of households in 2015 ($)," to approximate neighbourhood income. In @sec-cleaning, we discuss the selection of neighbourhoods and the rationale behind these choices.
 
 ```{r}
 #| label: fig-income
@@ -148,50 +148,50 @@ p6 <- ggplot(income_data, aes(x = Income, y = Speeding)) +
 
 # Arrange the plots in a grid
 grid.arrange(p1)
-grid.arrange(p2, p3, p4, p5, p6 ,ncol = 3)
+grid.arrange(p2, p3, p4, p5, p6 ,ncol = 2)
 
 ```
 
-Each point in these scatterplots represents an individual neighbourhood. In these graphs (@fig-income), it is evident that there is a weak positive correlation between income and the number of citations, with offences like distracted driving and speeding showing the strongest correlations among all offence types. This is further illustrated in @sec-model and @sec-model-details. Lastly, we note that the graphs display high variation and a wide spread, raising the question of whether there is issues with our correlation model between income and the number of citations issued. In the next section, we will explain how we created a correlation model to draw the red line, which helps us assess the strength of this correlation. 
+Each point in these scatterplots represents an individual neighbourhood. In these graphs (@fig-income), it is evident that there is a weak positive correlation between income and the number of citations, with offences like distracted driving and speeding showing the strongest correlations among all offence types. This is further illustrated in @sec-model and @sec-details. Lastly, we note that the graphs display high variation and a wide spread, raising the question of whether there is issues with our correlation model between income and the number of citations issued. In the next section, we will explain how we created a correlation model to draw the red line, which helps us assess the strength of this correlation. 
 
 
 # Model {#sec-model}
 
 The goal of our modeling strategy is twofold. First, to determine whether there is a relationship between neighbourhood income and the number of offences. Second, to assess how strong this relationship is.  
-We will use a simple linear regression model to examine the effect of income on the number of citations issued in each neighbourhood. Background details and diagnostics are included in [Appendix -@sec-model-details].
+We will use a simple linear regression model to examine the effect of income on the number of citations issued in each neighbourhood. Background details and diagnostics are included in [Appendix @sec-details].
 
 ## Model Setup
 
-Define $ y_i $ as the number of offences in a given neighbourhood, and $ x_i $ as the average income of that neighbourhood measured in thousands.  
-$ E(Y|X) = \beta_0 + \beta_1(X)$
+Define $$ y_i $$ as the number of offences in a given neighbourhood, and $$ x_i $$ as the average income of that neighbourhood measured in thousands.  
+$$ E(Y|X) = \beta_0 + \beta_1(X)$$
 
 ### Model Justification
 
-A linear regression model was chosen because it allows us to analyze the effect of income on the number of citations. As neighbourhood income increases or decreases, do offences decrease or increase? This will help us evaluate the strength of the relationship between citations and average neighbourhood income. While we could add more variables for a deeper analysis, that would fall outside the scope of this paper, which is focused solely on determining if a correlation exists between income and offences. While other models may give us a more accurate picture of the correlation, for the purpose of this analysis, we are just interested to see if there is a correlation or if other factors affect the amount of ciations given out. So for that purpose, a linear regression serves our purpose. 
+A linear regression model was chosen because it allows us to analyze the effect of income on the number of citations. As neighbourhood income increases or decreases, do offences decrease or increase? This will help us evaluate the strength of the relationship between citations and average neighbourhood income. While we could add more variables for a deeper analysis, that would fall outside the scope of this paper, which is focused solely on determining if a correlation exists between income and offences. While other models may give us a more accurate picture of the correlation, for the purpose of this analysis, we are just interested to see if there is a correlation or if other factors affect the amount of ciations given out. Therefore, a linear regression serves our purpose. 
 
 # Results {#sec-results}
 
 The linear regression model was applied to examine the relationship between neighbourhood income and the number of traffic offences. The model's equation is as follows:
 
 
-$E(Y|X) = \beta_0 + \beta_1 \cdot \text{average\_income}$
+$$E(Y|X) = \beta_0 + \beta_1 \cdot \text{average income}$$
 
-The summary of the linear regression model is provided below in @ressidual_plots.These plots tells us that theres other factors affecting the amount of offences committed than just the neighbourhoods income. This means that our model isnt fully cpaturing all the factors that influence the neighbourhoods offences. Although, @fig-ResidualDiagnostics does show us that aggressive driving has the strongest relationship between the number of offences and a neighbourhoods income.
-Overall, while there is a relationship between neighbourhoods income and their offences, there is other factors that are missing that we should consider.
+The summary of the linear regression model is provided below in (@sec-diagnostic).These plots tells us that theres other factors affecting the amount of offences committed than just the neighbourhood's income. This means that our model isnt fully cpaturing all the factors that influence the neighbourhood's offences. Although, @fig-ResidualDiagnostics does show us that aggressive driving has the strongest relationship between the number of offences and a neighbourhood's income.
+Overall, while there is a relationship between neighbourhood's income and their offences, there is other factors that are missing that we should consider.
 
 # Discussion
 
 ## Exploring the Relationship Between Income and Offences {#sec-first-point}
-The primary focus of this paper is to determine whether there is a relationship between the number of offences and the income of a neighbourhood. The results indicate that this relationship is weak but present, with aggressive driving and speeding showing the strongest connections to income. This raises questions about why wealthier neighbourhoods are penalized more than lower-income ones. Perhaps wealthier neighbourhoods have more speed cameras, or maybe speed cameras in lower-income areas are more frequently vandalized. It is also possible that police are targeting wealthier individuals, or that wealthier individuals are more willing to pay speeding tickets, while those in lower-income neighbourhoods are more cautious about speeding. These questions lead to broader inquiries, such as whether fines should be income-adjusted.
+The primary focus of this paper is to determine whether there is a relationship between the number of offences and the income of a neighbourhood. The results indicate that this relationship is weak but present, with aggressive driving and speeding showing the strongest connections to income. This raises questions about why wealthier neighbourhoods are penalized more than lower-income ones. Some potential factors of neigbourhood's citations discrepencies may include the number of speed cameras, their condition and functionality. There is also a possibility that certain groups of people are more willing to pay fines than others. These questions lead to broader inquiries, such as whether fines should be income-adjusted.
 
 ## Scope of Analysis
 Our data also suggest that we do not have the full picture. Other variables should be considered when analyzing the correlation between police activity and specific neighbourhoods. For instance, busier neighbourhoods might receive more offences simply due to higher traffic volume compared to quieter areas. Some neighbourhoods have school zones, which may lead to an increase in offences. The time of offences could also be another factor to take into account. Lastly, considering what @deLima2022 discusses in 'Making Forest Data Fair and Open' about how data is collected, it raises questions about whether traffic data has been collected without consideration of the socioeconomic background of neighbourhoods, potentially reinforcing pre-existing disparities and affecting how offences are recorded and managed. There are risks related to who collects traffic offence data, under what conditions, and what biases they may have. Accounting for these factors could provide a clearer understanding.
 
 ## The Broader Implications and Ethical Considerations
-We have raised more questions than answers, but that was the purpose of this paper. If we can find a relationship between income and traffic offences, even if weak, there might be other factors affecting offences across Toronto. Identifying all these variables can help us make Toronto fairer and safer. At the end of the day, it is crucial to have driving laws that are enforced equally and fairly across the city. This paper should serve as a starting point to delve deeper into ensuring that police practices are just and equitable. While it might be tempting to use this data for personal benefit to avoid penalties, we have an ethical responsibility to use public data in the best interest of society. As stated in @DataFeminism, 'What gets counted counts.' The data presented here can shape perceptions of traffic enforcement and reveal broader patterns of unequal enforcement across different income levels. 
+We have raised more questions than answers, but if we can find a relationship between income and traffic offences, then there might be other factors affecting offences across Toronto. Identifying all these variables can help us make Toronto fairer and safer. At the end of the day, it is crucial to have driving laws that are enforced equally and fairly across the city. This paper should serve as a starting point to delve deeper into ensuring that police practices are just and equitable. While it might be tempting to use this data for personal benefit to avoid penalties for example, we have an ethical responsibility to use public data in the best interest of society. As stated in @DataFeminism, 'What gets counted counts.' The data presented here can shape perceptions of traffic enforcement and reveal broader patterns of unequal enforcement across different income levels. 
 
 ## Weaknesses and Next Steps
-There may be bias in the data, as the income of a neighbourhood could influence the level of police activity in that area. This could result in more citations being issued in lower-income neighbourhoods due to higher police presence. Additionally, the linear regression model we used makes certain assumptions, which are further discussed in @sec-model-details, regarding how well the model fits the data. As described in @DataFeminism, 'Rethinking Binaries' is crucial to capture the bigger picture, as focusing on only two variables can lead to overly simplified analyses and insufficient conclusions.
+There may be bias in the data, as the income of a neighbourhood could influence the level of police activity in that area. This could result in more citations being issued in lower-income neighbourhoods due to higher police presence. Additionally, the linear regression model we used makes certain assumptions, which are further discussed in @sec-details, regarding how well the model fits the data. As described in @DataFeminism, 'Rethinking Binaries' is crucial to capture the bigger picture, as focusing on only two variables can lead to overly simplified analyses and insufficient conclusions.
 
 The next steps for this research would involve incorporating additional variables to provide a more comprehensive view of the factors influencing the number of citations a neighbourhood receives. Furthermore, using more sophisticated models could lead to a more accurate understanding of the relationship between income and traffic offences. Lastly, the data does not account for citations that were dismissed or dropped after review, which could affect the accuracy of the results.
 
@@ -203,9 +203,10 @@ The next steps for this research would involve incorporating additional variable
 # Appendix {-}
 
 
-# Data Cleaning (sec-data-cleaning)
-For data cleaning, we used packages like tidyverse, dplyr, and readr. Our focus was on all neighbourhoods that had data on police offences and average income. The offences data ranged from 2014 to 2023, while the only available income data for neighbourhoods was from 2015. We used two datasets, TorontoNeighbourhoodProfiles and TorontoPoliceData2024, and merged the information based on the neighbourhoods. To analyze the total offences committed by each neighbourhood, we summed the individual offence categories to get a single total per neighbourhood. After merging, any unavailable data, such as NA values, was removed. Finally, outliers were removed following an interquartile process. By running tests with lubridate and testthat, we ensured that our data was consistent and error-free.
-# Model details {#sec-model-details}
+# Data Cleaning {#sec-cleaning}
+For data cleaning, we used packages like @tidyverse, @dplyr, and @readr. Our focus was on all neighbourhoods that had data on police offences and average income. The offences data ranged from 2014 to 2023, while the only available income data for neighbourhoods was from 2015. We used two datasets, TorontoNeighbourhoodProfiles and TorontoPoliceData2024, and merged the information based on the neighbourhoods. To analyze the total offences committed by each neighbourhood, we summed the individual offence categories to get a single total per neighbourhood. After merging, any unavailable data, such as NA values, was removed. Finally, outliers were removed following an interquartile process. By running tests with @lubridate and @testthat, we ensured that our data was consistent and error-free.
+
+# Model details {#sec-details}
 
 ## Linear Regression
 
@@ -218,7 +219,7 @@ This shows that every $1000 increase in neighbourhood income:
  - Other HTA:  1.26  additional tickets will be given.  
  - Speeding:  3.87  additional tickets will be given.  
 
-## Diagnostics
+## Diagnostics {#sec-diagnostic}
 
 @fig-mainResidualDiagnostics-1 is a Residual vs. Fitted Values Plot. It shows a pattern in the spread of residuals, suggesting potential heteroscedasticity.
 
@@ -260,7 +261,7 @@ plot_residual_diagnostics <- function(model, predictor_var) {
 #### Plot the diagnostics for the Total_Tickets_model ####
 plot_residual_diagnostics(all_models[["Total_Tickets_model"]], predictor_var = "Income")
 ``` 
-@fig-ResidualDiagnostics
+
 
 ```{r}
 #| echo: false
